@@ -1,15 +1,19 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
+
 import Button from './Button';
 import Input from './Input';
+
+import AuthLogic from '../logic/Auth.js'
 
 var AuthForm = {
   login : {
     type : 'text',
-    placeholder : 'Username',
+    placeholder : 'Username'
   },
   password : {
     type : 'password',
-    placeholder : 'Password',
+    placeholder : 'Password'
   },
   buttons : {
     login : {
@@ -21,18 +25,22 @@ var AuthForm = {
   }
 };
 
-var Auth = React.createClass ({
-  getInitialState : function () {
-    return {
+const Auth = class Auth extends React.Component {
+  constructor() {
+    super();
+    this.state = {
       login : true,
-      registration : false
+      registration : false,
     };
-  },
 
-  onChangePanel : function (e) {
+    this.onChangePanel = this.onChangePanel.bind(this);
+  }
+
+  onChangePanel (e) {
     e.preventDefault();
+    
     this.setState({login : !this.state.login, registration : !this.state.registration});
-  },
+  }
 
   render () {
     return (
@@ -47,14 +55,18 @@ var Auth = React.createClass ({
       </div>
     )
   }
-});
+};
 
-var LoginPanel = React.createClass({
-  render : function() {
+const LoginPanel = class LoginPanel extends React.Component {
+  onLogin () {
+
+  }
+
+  render () {
     return (
       <div className="login">
         <div className='title'>
-          <span className='level-01'>Auth on platform</span>
+          <span className='level-01' onClick={ this.onLogin }>Auth on platform</span>
           <span className='level-02'>Enter yours data in form and enter to site.</span>
         </div>
         <form>
@@ -65,10 +77,10 @@ var LoginPanel = React.createClass({
       </div>
     )
   }
-});
+};
 
-var RegistrationPanel = React.createClass({
-  render : function() {
+const RegistrationPanel = class RegistrationPanel extends React.Component{
+  render () {
     return (
       <div className="registration">
           <div className='title'>
@@ -84,7 +96,7 @@ var RegistrationPanel = React.createClass({
         </div>
     )
   }
-})
+}
 
 
 export default Auth;

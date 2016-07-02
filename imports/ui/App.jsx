@@ -2,7 +2,7 @@ import React from 'react';
 
 import Navigation from './Navigation';
 
-const App = React.createClass({
+const App = class App extends React.Component {
 	render() {
 		return (
 			<div>
@@ -11,6 +11,6 @@ const App = React.createClass({
 			</div>	
 		)		
 	}
-});
+}
 
 export default App;

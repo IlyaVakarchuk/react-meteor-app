@@ -1,12 +1,12 @@
 import React from 'react';
 
-var Button = React.createClass({
-  render : function() {
-    var text = this.props.data.text;
+const Button = class Button extends React.Component {
+  render () {
+    let text = this.props.data.text;
     return (
-      <button>{ text }</button>
+      <button type='button'>{ text }</button>
     )
   }
-});
+};
 
 export default Button; 
