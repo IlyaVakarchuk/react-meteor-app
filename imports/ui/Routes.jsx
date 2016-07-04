@@ -1,17 +1,54 @@
 import React from 'react';
-import { Router, Route, Link, browserHistory } from 'react-router';
 
 import App from './App';
 import Auth from './Auth';
+import About from './About';
 
 const Routes = class Routes extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      route : window.location.hash.substr(1)
+    };
+
+    this.changeRoute = this.changeRoute.bind(this);
+
+    this.changeRoute();
+  }
+
+  changeRoute () {
+    window.addEventListener('hashchange', () => {
+      this.setState({
+        route : window.location.hash.substr(1)
+      })
+    })
+  }
+
   render () {
+
+    let Page;
+    switch (this.state.route) {
+      case '/':
+        Page = App;
+        break;
+      case '/auth':
+        Page = Auth;
+        break;
+      case '/about':
+        Page = About;
+        break;
+      default:
+        Page = App;
+        break;
+    }
+
+
     return (
-      <Router history={ browserHistory }>
-  		<Route path="/" component={ App }>
-  			<Route path="/auth" component={ Auth } />
-  		</Route>
-  	</Router>
+      <div>
+        <App />
+        <Page />
+      </div>
     );  
   }
 }

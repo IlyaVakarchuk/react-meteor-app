@@ -75,7 +75,7 @@ const LoginPanel = class LoginPanel extends React.Component {
     return (
       <div className="login">
         <div className='title'>
-          <span className='level-01' onClick={ this.onLogin }>Auth on platform</span>
+          <span onClick={ this.onLogin } className='level-01'>Auth on platform</span>
           <span className='level-02'>Enter yours data in form and enter to site.</span>
         </div>
         <form>

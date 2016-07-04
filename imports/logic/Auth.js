@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
 
 const Auth = class {
 	constructor() {
@@ -11,7 +12,9 @@ const Auth = class {
 			if (err) {
 				console.log(err);
 			} else {
-				console.log(res);
+				if (res.state) {
+					Session.set('auth', true);
+				}
 			}
 		});
 	}
@@ -23,7 +26,9 @@ const Auth = class {
 			if (err) {
 				console.log(err);
 			} else {
-				console.log(res);
+				if (res.state) {
+					Session.set('auth', true);
+				}
 			}
 		});	
 	}
