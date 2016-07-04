@@ -4,7 +4,7 @@ const Button = class Button extends React.Component {
   render () {
     let text = this.props.data.text;
     return (
-      <button type='button'>{ text }</button>
+      <button onClick={this.props.action}>{ text }</button>
     )
   }
 };

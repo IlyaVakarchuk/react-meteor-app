@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Meteor } from 'meteor/meteor';
 
 import Button from './Button';
@@ -15,7 +16,7 @@ const Auth = class Auth extends React.Component {
       registration : false,
       settings : {
         login : {
-          type : 'text',
+          type : 'email',
           placeholder : 'Username',
           userData : {}
         },
@@ -34,8 +35,6 @@ const Auth = class Auth extends React.Component {
         }
       }
     };
-
-
 
     this.onChangePanel = this.onChangePanel.bind(this);
   }
@@ -67,7 +66,8 @@ const LoginPanel = class LoginPanel extends React.Component {
     this.onLogin = this.onLogin.bind(this); 
   }
 
-  onLogin () {
+  onLogin (e) {
+    e.preventDefault();
     AuthLogic.auth({login : this.props.data.login.userData, password : this.props.data.password.userData});
   }
 
@@ -75,13 +75,13 @@ const LoginPanel = class LoginPanel extends React.Component {
     return (
       <div className="login">
         <div className='title'>
-          <span onClick={ this.onLogin } className='level-01'>Auth on platform</span>
+          <span className='level-01'>Auth on platform</span>
           <span className='level-02'>Enter yours data in form and enter to site.</span>
         </div>
         <form>
           <Input data={ this.props.data.login } />
           <Input data={ this.props.data.password } />
-          <Button data={ this.props.data.buttons.login } />
+          <Button action={ this.onLogin } data={ this.props.data.buttons.login } />
         </form>
       </div>
     )
@@ -102,14 +102,14 @@ const RegistrationPanel = class RegistrationPanel extends React.Component{
     return (
       <div className="registration">
           <div className='title'>
-            <span className='level-01' onClick={ this.onRegistration }>Begin apart of platform</span>
+            <span className='level-01'>Begin apart of platform</span>
             <span className='level-02'>Enter yours data in form and enter to site.</span>
           </div>
           <form>
             <Input data={ this.props.data.login } />
             <Input data={ this.props.data.password } />
             <Input data={ this.props.data.password } />
-            <Button data={ this.props.data.buttons.registration } />            
+            <Button action={ this.onRegistration } data={ this.props.data.buttons.registration } />            
           </form>
         </div>
     )

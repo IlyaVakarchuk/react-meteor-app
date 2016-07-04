@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 import { Session } from 'meteor/session';
 
 const Auth = class {
@@ -7,30 +8,42 @@ const Auth = class {
   }
 
 	auth(params) {	
-		console.log('!')
-		Meteor.call('auth', params, (err, res) => {
-			if (err) {
-				console.log(err);
-			} else {
-				if (res.state) {
-					Session.set('auth', true);
-				}
-			}
-		});
+		Meteor.loginWithPassword(params.login, params.password, (err) => {
+    	console.log(err);
+    	if (!err) {
+    		Session.set('auth', true);
+    		window.location.hash = "/";
+    	}
+ 		});
+		// Meteor.call('auth', params, (err, res) => {
+		// 	if (err) {
+		// 		console.log(err);
+		// 	} else {
+		// 		if (res.state) {
+		// 			Session.set("auth", true);
+		// 			window.location.hash = '#/home';
+		// 		}
+		// 	}
+		// });
 	}
 
 	registration(params) {
-		Meteor.call('registration', params, (err, res) => {
-			console.log(err)
-			console.log(res)
-			if (err) {
-				console.log(err);
-			} else {
-				if (res.state) {
-					Session.set('auth', true);
-				}
-			}
-		});	
+		Accounts.createUser({email : params.login, password : params.password}, (err) => {
+			if (!err) {
+    		Session.set('auth', true);
+    		window.location.hash = "/";
+    	}
+		});
+		// Meteor.call('registration', params, (err, res) => {
+		// 	if (err) {
+		// 		console.log(err);
+		// 	} else {
+		// 		if (res.state) {
+		// 			Session.set("auth", true);
+		// 			window.location.hash = '#/home';
+		// 		}
+		// 	}
+		// });	
 	}
 }
 

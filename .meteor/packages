@@ -23,3 +23,6 @@ fourseven:scss
 nimble:restivus
 http
 session
+slava:redis-livedata
+accounts-password
+accounts-ui
