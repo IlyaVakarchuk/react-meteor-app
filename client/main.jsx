@@ -3,9 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { render } from 'react-dom';
 import { Accounts } from 'meteor/accounts-base';
-import Routes from '../imports/ui/Routes.jsx';
-
-import '../imports/startup/accounts-config.js'
+import App from '../imports/ui/App.jsx';
 
 
 Meteor.startup(() => {
@@ -31,5 +29,5 @@ Meteor.startup(() => {
 // Accounts.createUser({email : 'ilya', password : '123qwe'}, () => {
       
 //     });
-  render(<Routes />, document.getElementById('main-wrap'));
+  render(<App />, document.getElementById('main-wrap'));
 })
