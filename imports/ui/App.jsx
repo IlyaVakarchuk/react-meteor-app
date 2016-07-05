@@ -3,10 +3,29 @@ import React from 'react';
 import { Session } from 'meteor/session';
 import { Meteor } from 'meteor/meteor';
 
+import { Router, Route, Link, browserHistory } from 'react-router'
+
 import Auth from './Auth';
 import About from './About';
 import Home from './Home';
 import Navigation from './Navigation';
+import SplashScreen from './SplashScreen';
+
+
+let Page = class Page extends React.Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    return (
+      <div className='current-layer'>
+        <Navigation />
+        { this.props.children }
+      </div>
+    )
+  }
+}
 
 const App = class App extends React.Component {
   constructor() {
@@ -16,61 +35,29 @@ const App = class App extends React.Component {
       route : window.location.hash.substr(1),
     };
 
-    this.changeRoute = this.changeRoute.bind(this);
-    this.changeRoute();
+    this.onCheckAuth = this.onCheckAuth.bind(this);
   }
 
-  changeRoute () {
-    window.addEventListener('hashchange', () => {
-      this.setState({
-        route : window.location.hash.substr(1)
-      })
-    })
+  onCheckAuth (nextState, replace) {
+    if (!Session.get("auth")) {
+      replace('/');
+    }
   }
 
   render () {
-
-    let Page;
-    switch (this.state.route) {
-      case '/':
-        Page = About;
-        break;
-      case '/auth':
-        if (!Session.get("auth")) {
-          Page = Auth;   
-        } else {
-          Page = Home;
-        }
-        break;
-      case '/about':
-        Page = About;
-        break;
-      case '/home' :
-        if (Session.get("auth")) {
-          Page = Home;   
-        } else {
-          window.location.hash = "/";
-        }        
-        break;
-      case '/logout':
-        if (Session.get("auth")) {
-          Meteor.logout();  
-          Session.set("auth", false);
-          window.location.hash = "/";
-        }
-      default:
-        Page = About;
-        break;
-    }
-
-
     return (
       <div>
-        <Navigation />
-        <Page />
+      <Router history={browserHistory}>
+        <Route path="/" component={Page}>
+          <Route path="auth" component={Auth}/>
+          <Route path="about" component={About} onEnter={this.onCheckAuth} />
+          <Route path="home" component={Home} onEnter={this.onCheckAuth} />
+        </Route>
+      </Router>
       </div>
     );  
   }
 }
+
 
 export default App;

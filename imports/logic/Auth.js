@@ -2,7 +2,10 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Session } from 'meteor/session';
 
+import { browserHistory } from 'react-router'
+
 const Auth = class {
+
 	constructor() {
 		this.url = 'http://localhost:3000/api/auth';
   }
@@ -12,7 +15,7 @@ const Auth = class {
     	console.log(err);
     	if (!err) {
     		Session.set('auth', true);
-    		window.location.hash = "/";
+    		browserHistory.pushState('/');
     	}
  		});
 		// Meteor.call('auth', params, (err, res) => {
@@ -31,7 +34,7 @@ const Auth = class {
 		Accounts.createUser({email : params.login, password : params.password}, (err) => {
 			if (!err) {
     		Session.set('auth', true);
-    		window.location.hash = "/";
+    		browserHistory.pushState('/');
     	}
 		});
 		// Meteor.call('registration', params, (err, res) => {
