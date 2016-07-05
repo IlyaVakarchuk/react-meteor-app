@@ -1,5 +1,7 @@
 import React from 'react';
 
+import
+
 const PostItem = class PostItem extends React.Component {
   constructor() {
     super();
@@ -28,6 +30,9 @@ const PostItem = class PostItem extends React.Component {
           </div>
           <div className='show'>
             <div onClick={ this.onShowText }></div>
+          </div>
+          <div className='comments-block'>
+
           </div>
         </div>
       </div>
