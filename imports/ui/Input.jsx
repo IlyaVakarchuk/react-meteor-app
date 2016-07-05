@@ -12,7 +12,7 @@ const Input = class Input extends React.Component {
 
   onChangeHandler (e) {
     this.setState({value : e.target.value})
-    this.props.inputValue.userData = e.target.value;
+    this.props.inputValue.value = e.target.value;
   }
 
   render () {

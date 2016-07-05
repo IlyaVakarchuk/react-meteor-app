@@ -18,12 +18,12 @@ const Auth = class Auth extends React.Component {
         login : {
           type : 'email',
           placeholder : 'Username',
-          userData : ''
+          value : ''
         },
         password : {
           type : 'password',
           placeholder : 'Password',
-          userData : ''
+          value : ''
         },
         buttons : {
           login : {
@@ -68,7 +68,7 @@ const LoginPanel = class LoginPanel extends React.Component {
 
   onLogin (e) {
     e.preventDefault();
-    AuthLogic.auth({login : this.props.data.login.userData, password : this.props.data.password.userData});
+    AuthLogic.auth({login : this.props.data.login.value, password : this.props.data.password.value});
   }
 
   render () {
@@ -95,7 +95,7 @@ const RegistrationPanel = class RegistrationPanel extends React.Component{
   }
 
   onRegistration () {
-   AuthLogic.registration({login : this.props.data.login.userData, password : this.props.data.password.userData}); 
+   AuthLogic.registration({login : this.props.data.login.value, password : this.props.data.password.value}); 
   }
 
   render () {
@@ -106,9 +106,9 @@ const RegistrationPanel = class RegistrationPanel extends React.Component{
             <span className='level-02'>Enter yours data in form and enter to site.</span>
           </div>
           <form>
-            <Input type={ this.props.data.login.type } placeholder={ this.props.data.login.placeholder } inputValue={this.props.data.login.userData} />
-            <Input type={ this.props.data.password.type } placeholder={ this.props.data.password.placeholder } inputValue={this.props.data.password.userData} />
-            <Input type={ this.props.data.password.type } placeholder={ this.props.data.password.placeholder } inputValue={this.props.data.password.userData} />
+            <Input type={ this.props.data.login.type } placeholder={ this.props.data.login.placeholder } inputValue={this.props.data.login} />
+            <Input type={ this.props.data.password.type } placeholder={ this.props.data.password.placeholder } inputValue={this.props.data.password} />
+            <Input type={ this.props.data.password.type } placeholder={ this.props.data.password.placeholder } inputValue={this.props.data.password} />
             <Button action={ this.onRegistration } data={ this.props.data.buttons.registration } />            
           </form>
         </div>
