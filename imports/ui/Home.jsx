@@ -1,14 +1,31 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 
+import Profile from './Profile';
+
 const Home = class Home extends React.Component {
+  constructor() {
+    super();
+
+    this.onShowProfile = this.onShowProfile.bind(this);
+
+    this.state = {
+      profileShow : false
+    }
+  }
+
+  onShowProfile() {
+    this.setState({profileShow : !this.state.profileShow})
+  }
+
   render() {
     console.log(Meteor.user())
     return (
       <div id="home">
+        {this.state.profileShow ? <Profile /> : false }
         <div className='user-profile'>
           <div className='user-avatar'>
-            <img src="images/avatar.png" /> 
+            <img onClick={ this.onShowProfile } src="images/avatar.png" /> 
           </div>
           <div className='user-data'>
             <div className='user-name'>{ Meteor.user().username }</div>
