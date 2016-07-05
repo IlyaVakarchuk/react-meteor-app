@@ -197,4 +197,26 @@ body {
 	    }
 	  }
 	}
+
+  #not-found-page {
+    width: 100vw;
+    height: 100vh;
+    background-color: #C75C5C;
+
+    img {
+      margin: 0 auto;
+      display: block;
+      position: relative;
+      top: 20%;
+    }
+
+    div {
+      color: #E0E0D1;
+      display: block;
+      position: relative;
+      top: 25%;
+      font-size: 56px;
+      text-align: center;
+    }
+  }
 }
