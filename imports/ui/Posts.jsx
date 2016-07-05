@@ -3,7 +3,17 @@ import React from 'react';
 const PostItem = class PostItem extends React.Component {
   constructor() {
     super();
+
+    this.onShowText = this.onShowText.bind(this);
+
+    this.state = {
+      show : false
+    }
   }
+
+  onShowText () {
+    this.setState({show : !this.state.show});
+  } 
 
   render () {
     return (
@@ -11,8 +21,14 @@ const PostItem = class PostItem extends React.Component {
         <div className='title'>
           { this.props.post.title}
         </div>
-        <div className='text'>
-          { this.props.post.desc}
+         { this.state.show ? <div className='text'>{ this.props.post.desc } </div> : false }
+        <div className='preview-layout'>
+          <div className='dark-layer'>
+
+          </div>
+          <div className='show'>
+            <div onClick={ this.onShowText }></div>
+          </div>
         </div>
       </div>
     )
@@ -23,16 +39,7 @@ const Posts = class Posts extends React.Component {
   constructor() {
     super();
 
-    this.onEn = this.onEn.bind(this);
     this.renderItem = this.renderItem.bind(this);
-  }
-
-  componentWillReceiveProps (nextProps) {
-    console.log('update')
-  }
-
-  onEn () {
-    console.log(this.props);
   }
 
   renderItem() {
@@ -45,7 +52,6 @@ const Posts = class Posts extends React.Component {
     return (
       <div id="posts-list">
       { this.renderItem() }
-      <p onClick={this.onEn}>Click</p>
       </div>
     )
   }

@@ -35,3 +35,12 @@
     top : 10vh;
   }
 }
+
+@include keyframes(show-text) {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 200px;
+  }
+}
