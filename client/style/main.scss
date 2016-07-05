@@ -113,6 +113,11 @@ body {
         display: block;
         width: 100%;
 
+        input, button {
+          outline: none;
+          border: none;
+        }
+
         &.title {
           height: 100px;
           text-align: center;
@@ -145,6 +150,16 @@ body {
             &.section-value {
               font-size: 18px;
 
+              input {
+                height: 40px;
+                padding-left: 10px;
+                font-size: 14px;
+              }
+
+              .value {
+                width: 100%;
+              }
+
               i {
                 position: absolute;
                 right: 30px;
@@ -156,6 +171,23 @@ body {
                 cursor: pointer;
               }
             }
+          }
+        }
+
+        &.save-setting-btn {
+          height: 70px;
+          border-top: 3px solid black;
+
+          button {
+            width: 120px;
+            height: 40px;
+            background-color: #E57373;
+            color: #FFF3E0;
+            margin: 0 auto;
+            display: block;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 24px;
           }
         }
       }
