@@ -18,7 +18,7 @@ body {
     width: 100%;
     height: 50px;
     padding: 15px;
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
     text-align: right;
@@ -45,6 +45,28 @@ body {
           color: #E0E0D1;
         }
       }
+    }
+  }
+
+  #splash-screen {
+    .header {
+      height: 65vh;
+      width: 100%;
+      background-color: #4F5D73;
+
+      img {
+        margin: 0 auto;
+        display: block;
+        width: 300px;
+        top: 45vh;
+        position: relative;
+      }
+    }
+
+    .footer {
+      height: 35vh;
+      width: 100%;
+      background-color: #E0E0D1;
     }
   }
 
