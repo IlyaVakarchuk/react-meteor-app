@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import React from 'react';
 
 import Profile from './Profile';
+import Posts from './Posts';
+import PostList from '../logic/Posts.js';
 
 const Home = class Home extends React.Component {
   constructor() {
@@ -19,7 +21,6 @@ const Home = class Home extends React.Component {
   }
 
   render() {
-    console.log(Meteor.user())
     return (
       <div id="home">
         {this.state.profileShow ? <Profile /> : false }
@@ -32,6 +33,8 @@ const Home = class Home extends React.Component {
             <div className='email'>{ Meteor.user().emails[0].address } </div>
           </div>
         </div> 
+
+        <Posts postlist={PostList.getList()}/>
       </div>  
     )   
   }
