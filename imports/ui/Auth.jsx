@@ -81,7 +81,7 @@ const LoginPanel = class LoginPanel extends React.Component {
         <form>
           <Input type={ this.props.data.login.type } placeholder={ this.props.data.login.placeholder } inputValue={this.props.data.login}/>
           <Input type={ this.props.data.password.type } placeholder={ this.props.data.password.placeholder } inputValue={this.props.data.password}/>
-          <Button action={ this.onLogin } data={ this.props.data.buttons.login } />
+          <Button action={ this.onLogin } text={ this.props.data.buttons.login.text } />
         </form>
       </div>
     )
@@ -109,7 +109,7 @@ const RegistrationPanel = class RegistrationPanel extends React.Component{
             <Input type={ this.props.data.login.type } placeholder={ this.props.data.login.placeholder } inputValue={this.props.data.login} />
             <Input type={ this.props.data.password.type } placeholder={ this.props.data.password.placeholder } inputValue={this.props.data.password} />
             <Input type={ this.props.data.password.type } placeholder={ this.props.data.password.placeholder } inputValue={this.props.data.password} />
-            <Button action={ this.onRegistration } data={ this.props.data.buttons.registration } />            
+            <Button action={ this.onRegistration } text={ this.props.data.buttons.text } />            
           </form>
         </div>
     )
