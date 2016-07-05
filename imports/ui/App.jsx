@@ -12,6 +12,7 @@ import Navigation from './Navigation';
 import SplashScreen from './SplashScreen';
 import NotFoundPage from './NotFoundPage';
 
+
 let Page = class Page extends React.Component {
   constructor() {
     super();
@@ -49,7 +50,7 @@ const App = class App extends React.Component {
     return (
       <div>
       <Router history={browserHistory}>
-        <Route path="/" component={Page}>
+        <Route path="/" component={Page} >
           <Route path="auth" component={Auth}/>
           <Route path="about" component={About} onEnter={this.onCheckAuth} />
           <Route path="home" component={Home} onEnter={this.onCheckAuth} />

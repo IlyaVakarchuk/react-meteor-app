@@ -3,6 +3,8 @@ import React from 'react';
 import Input from './Input';
 import Button from './Button';
 
+import User from '../logic/User.js';
+
 const Profile = class Profile extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -41,7 +43,6 @@ const Profile = class Profile extends React.Component {
   }
 
   onSaveParam () {
-    
   }
 
   componentWillReceiveProps(nextProps) {

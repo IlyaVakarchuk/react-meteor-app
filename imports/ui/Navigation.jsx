@@ -14,7 +14,7 @@ const Navigation = class Navigation extends React.Component {
   onLogout () {
     Meteor.logout();
     Session.set('auth', false);
-    browserHistory.pushState('/');
+    browserHistory.push('/');
   }
 
 	render () {
