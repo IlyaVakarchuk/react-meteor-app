@@ -20,6 +20,7 @@ let Page = class Page extends React.Component {
   render() {
     return (
       <div className='current-layer'>
+        { Session.get("auth") ? false : <SplashScreen /> }
         <Navigation />
         { this.props.children }
       </div>
