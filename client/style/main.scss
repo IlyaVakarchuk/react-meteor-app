@@ -366,11 +366,11 @@ body {
 	      display: inline-block;
 	    }
 	    
-	    input[ng-model='password01'] {
+	    input.pass01 {
 	      float: left;
 	    }    
 
-	    input[ng-model='password02'] {
+	    input.pass01 {
 	      float: right;
 	    }
 	  }

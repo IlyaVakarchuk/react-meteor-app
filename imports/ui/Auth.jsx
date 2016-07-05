@@ -23,7 +23,12 @@ const Auth = class Auth extends React.Component {
         password : {
           type : 'password',
           placeholder : 'Password',
-          value : ''
+          passVal01 : {
+            value : ''
+          },
+          passVal02 : {
+            value : ''
+          }
         },
         buttons : {
           login : {
@@ -95,7 +100,7 @@ const RegistrationPanel = class RegistrationPanel extends React.Component{
   }
 
   onRegistration () {
-   AuthLogic.registration({login : this.props.data.login.value, password : this.props.data.password.value}); 
+   AuthLogic.registration({login : this.props.data.login.value, password01 : this.props.data.password.passVal01.value, password02 : this.props.data.password.passVal02.value}); 
   }
 
   render () {
@@ -107,9 +112,9 @@ const RegistrationPanel = class RegistrationPanel extends React.Component{
           </div>
           <form>
             <Input type={ this.props.data.login.type } placeholder={ this.props.data.login.placeholder } inputValue={this.props.data.login} />
-            <Input type={ this.props.data.password.type } placeholder={ this.props.data.password.placeholder } inputValue={this.props.data.password} />
-            <Input type={ this.props.data.password.type } placeholder={ this.props.data.password.placeholder } inputValue={this.props.data.password} />
-            <Button action={ this.onRegistration } text={ this.props.data.buttons.text } />            
+            <Input class='pass01' type={ this.props.data.password.type } placeholder={ this.props.data.password.placeholder } inputValue={this.props.data.password.passVal01} />
+            <Input class='pass02' type={ this.props.data.password.type } placeholder={ this.props.data.password.placeholder } inputValue={this.props.data.password.passVal02} />
+            <Button action={ this.onRegistration } text={ this.props.data.buttons.registration.text } />            
           </form>
         </div>
     )
