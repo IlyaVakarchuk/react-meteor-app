@@ -7,9 +7,8 @@ import App from '../imports/ui/App.jsx';
 
 
 Meteor.startup(() => {
-  console.log(Meteor.user())
-  if (Meteor.user()) {
+  if (Meteor.userId()) {
     Session.set('auth', true);
   }
-  render(<App />, document.getElementById('main-wrap'));
+ 	render(<App />, document.getElementById('main-wrap'));
 })

@@ -11,7 +11,8 @@ const Auth = class {
 	}
 
 	auth(params) {	
-		Meteor.loginWithPassword(params.login, params.password, (err) => {
+		Meteor.loginWithPassword({email :params.login }, params.password, (err) => {
+    		console.log(err);
     	if (!err) {
     		Session.set('auth', true);
     		browserHistory.push('home');
