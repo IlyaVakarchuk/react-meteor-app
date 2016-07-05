@@ -18,12 +18,12 @@ const Auth = class Auth extends React.Component {
         login : {
           type : 'email',
           placeholder : 'Username',
-          userData : {}
+          userData : ''
         },
         password : {
           type : 'password',
           placeholder : 'Password',
-          userData : {}
+          userData : ''
         },
         buttons : {
           login : {
@@ -79,8 +79,8 @@ const LoginPanel = class LoginPanel extends React.Component {
           <span className='level-02'>Enter yours data in form and enter to site.</span>
         </div>
         <form>
-          <Input data={ this.props.data.login } />
-          <Input data={ this.props.data.password } />
+          <Input type={ this.props.data.login.type } placeholder={ this.props.data.login.placeholder } inputValue={this.props.data.login}/>
+          <Input type={ this.props.data.password.type } placeholder={ this.props.data.password.placeholder } inputValue={this.props.data.password}/>
           <Button action={ this.onLogin } data={ this.props.data.buttons.login } />
         </form>
       </div>
@@ -106,9 +106,9 @@ const RegistrationPanel = class RegistrationPanel extends React.Component{
             <span className='level-02'>Enter yours data in form and enter to site.</span>
           </div>
           <form>
-            <Input data={ this.props.data.login } />
-            <Input data={ this.props.data.password } />
-            <Input data={ this.props.data.password } />
+            <Input type={ this.props.data.login.type } placeholder={ this.props.data.login.placeholder } inputValue={this.props.data.login.userData} />
+            <Input type={ this.props.data.password.type } placeholder={ this.props.data.password.placeholder } inputValue={this.props.data.password.userData} />
+            <Input type={ this.props.data.password.type } placeholder={ this.props.data.password.placeholder } inputValue={this.props.data.password.userData} />
             <Button action={ this.onRegistration } data={ this.props.data.buttons.registration } />            
           </form>
         </div>

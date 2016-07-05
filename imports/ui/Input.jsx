@@ -12,15 +12,12 @@ const Input = class Input extends React.Component {
 
   onChangeHandler (e) {
     this.setState({value : e.target.value})
-    this.props.data.userData = e.target.value;
+    this.props.inputValue.userData = e.target.value;
   }
 
   render () {
-
-    var type = this.props.data.type,
-      placeholder = this.props.data.placeholder;
     return(
-      <input className='input' type={ type } placeholder={ placeholder } onChange={ this.onChangeHandler } value={ this.state.value }/>
+      <input className='input' type={ this.props.type } placeholder={ this.props.placeholder } onChange={ this.onChangeHandler } value={ this.state.value }/>
     )
   }
 };
