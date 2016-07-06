@@ -12,5 +12,17 @@ Meteor.startup(() => {
     Meteor.publish("comments", function () {
       return CommentsConnection.find({});
     });
+
+    Meteor.methods({
+      'comments:add' : (comment) => {
+        return CommentsConnection.insert(comment, (err, _id) => {
+          if (err) {
+            return false;
+          } else {
+            return true;
+          }
+        });
+      }
+    })
 }
 });

@@ -2,6 +2,8 @@ import React from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import Button from './Button';
 
+import Comments from '../logic/Comments.js'
+
 const CommentsItem = class CommentsItem extends React.Component {
   constructor() {
     super();
@@ -25,8 +27,13 @@ const CommentsList = class CommentsList extends React.Component {
   constructor() {
     super();
 
+    this.state = {
+      newComment : ''
+    }
+
     this.renderItem = this.renderItem.bind(this);
     this.onAddComment = this.onAddComment.bind(this); 
+    this.onChangeComment = this.onChangeComment.bind(this);
   }
 
   renderItem() {
@@ -36,7 +43,11 @@ const CommentsList = class CommentsList extends React.Component {
   }
 
   onAddComment() {
-    console.log('add comemnt event');
+    Comments.addNewComment(this.props.postId, this.state.newComment)
+  }
+
+  onChangeComment(e) {
+    this.setState({newComment : e.target.value})
   }
 
   render () {
@@ -45,7 +56,7 @@ const CommentsList = class CommentsList extends React.Component {
         <div className="comments-list">
           { this.renderItem() }
           <div className="new-comment">
-            <textarea></textarea>
+            <textarea onChange={ this.onChangeComment }></textarea>
             <Button action={ this.onAddComment } text={'add comment'}/>
           </div>
         </div>
