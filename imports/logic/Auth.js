@@ -23,7 +23,7 @@ const Auth = class {
 	registration(params) {
 		if ((params.login).match(this.emailPattern) != null) {
 			if (params.password01 === params.password02 ) {
-				Accounts.createUser({email : params.login, password : params.password01}, (err) => {
+				Accounts.createUser({username: params.login.split('@')[0], email : params.login, password : params.password01}, (err) => {
 					if (!err) {
 		    		Session.set('auth', true);
 		    		browserHistory.push('home');
