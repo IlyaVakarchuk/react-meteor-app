@@ -24,7 +24,7 @@ const PostItem = class PostItem extends React.Component {
         <div className='title'>
           { this.props.post.title}
         </div>
-         { this.state.show ? <div className='text'><div className='content' onClick={ this.onShowText }><div className='post-text'>{ this.props.post.desc }</div></div> <CommentsBlock postId={this.props.post.id} commentslist={Comments.getList({post : this.props.post.id})} /> </div> : false }
+         { this.state.show ? <div className='text'><div className='content' onClick={ this.onShowText }><div className='post-text'>{ this.props.post.text }</div></div> <CommentsBlock postId={this.props.post.id} commentslist={Comments.getList({post : this.props.post.id})} /> </div> : false }
         <div className='preview-layout'>
           <div className='dark-layer'>
 
@@ -57,7 +57,7 @@ const Posts = class Posts extends React.Component {
   render () {
     return (
       <div id="posts-list">
-        <Scrollbars autoHide={true} style={{ width: '100%', height: '80vh' }}>
+        <Scrollbars autoHide={true} style={{ width: '100%', height: '60vh' }}>
           { this.renderItem() }
         </Scrollbars>
       </div>

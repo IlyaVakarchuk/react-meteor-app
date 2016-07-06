@@ -1,17 +1,24 @@
 import { Meteor } from 'meteor/meteor';
    
-Meteor.startup(() => {
+Meteor.startup(() => {  
   PostsConnection = new Mongo.Collection('posts');
   CommentsConnection = new Mongo.Collection('comments');
   
   if (Meteor.isServer) {
-    Meteor.publish("posts", function () {
-      return PostsConnection.find({});
+
+    Meteor.publish('posts', function () {
+      return PostsConnection.find({}  );
     });
 
-    Meteor.publish("comments", function () {
+    Meteor.publish('comments', function () {
       return CommentsConnection.find({});
     });
+
+    Meteor.methods({
+      'start' : () => {
+        return Meteor.user();
+      }
+    })
 
     Meteor.methods({
       'comments:add' : (comment) => {
