@@ -7,6 +7,13 @@ import Comments from '../logic/Comments.js'
 const CommentsItem = class CommentsItem extends React.Component {
   constructor() {
     super();
+
+    this.formDate = this.formDate.bind(this);
+  }
+
+  formDate (date) {
+    let beautifulDate = date.getDate() + ' / ' + (date.getMonth() + 1) + ' / ' + date.getFullYear();
+    return beautifulDate;
   }
 
   render () {
@@ -15,8 +22,8 @@ const CommentsItem = class CommentsItem extends React.Component {
         <div className='comment-text'>{this.props.comment.text}</div>
         <div className='comment-data'>
           <div className='comment-data-author-avatar'><img src='images/interface/user.png'/></div>
-          <div className='comment-data-author-username'>{this.props.comment.author}</div>
-          <div className='comment-data-date'>12 may 2016</div>
+          <div className='comment-data-author-username'>{ this.props.comment.author }</div>
+          <div className='comment-data-date'>{this.formDate(this.props.comment.date)}</div>
         </div>
       </div>   
     )

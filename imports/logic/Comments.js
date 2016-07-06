@@ -8,7 +8,7 @@ const CommentsList = class CommentsList {
   }
 
   getList(param) {
-    return this.Comments.find(param).fetch();
+    return this.Comments.find(param, {sort : { date : -1 }}).fetch();
   }
 
   addNewComment(postId, text) {
