@@ -1,13 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
- 
+    
 const CommentsList = class CommentsList {
   constructor() {
+    Meteor.subscribe('comments');  
     this.Comments = new Mongo.Collection('comments');   
   }
 
-  getList() {
-    return this.Comments.find({}).fetch()
+  getList(param) {
+    return this.Comments.find(param).fetch();
   }
 }
 
