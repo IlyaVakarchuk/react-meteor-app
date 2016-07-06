@@ -12,6 +12,9 @@ const CommentsItem = class CommentsItem extends React.Component {
   }
 
   formDate (date) {
+    if (date == undefined) {
+     return ''
+    }
     let beautifulDate = date.getDate() + ' / ' + (date.getMonth() + 1) + ' / ' + date.getFullYear();
     return beautifulDate;
   }
@@ -35,7 +38,8 @@ const CommentsList = class CommentsList extends React.Component {
     super();
 
     this.state = {
-      newComment : ''
+      newComment : '',
+      render : false
     }
 
     this.renderItem = this.renderItem.bind(this);
@@ -51,6 +55,7 @@ const CommentsList = class CommentsList extends React.Component {
 
   onAddComment() {
     Comments.addNewComment(this.props.postId, this.state.newComment)
+    
   }
 
   onChangeComment(e) {

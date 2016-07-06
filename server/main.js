@@ -16,7 +16,6 @@ Meteor.startup(() => {
     Meteor.methods({
       'comments:add' : (comment) => {
         comment['date'] = new Date();
-        console.log(comment)
         return CommentsConnection.insert(comment, (err, _id) => {
           if (err) {
             return false;
