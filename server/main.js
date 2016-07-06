@@ -31,6 +31,13 @@ Meteor.startup(() => {
           }
         });
       }
+    });
+
+    Meteor.methods({
+      'comments:remove' : (comment) => {
+        CommentsConnection.remove(comment);
+        return true;
+      }
     })
 }
 });

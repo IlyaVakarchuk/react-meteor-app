@@ -9,6 +9,7 @@ const CommentsItem = class CommentsItem extends React.Component {
     super();
 
     this.formDate = this.formDate.bind(this);
+    this.onDeleteComment = this.onDeleteComment.bind(this);
   }
 
   formDate (date) {
@@ -19,9 +20,18 @@ const CommentsItem = class CommentsItem extends React.Component {
     return beautifulDate;
   }
 
+  onDeleteComment () {
+    Comments.removeComment(this.props.comment);
+  }
+
   render () {
+    let commentCtrl = ''
+    if (this.props.comment.author == Meteor.user().username) {
+      commentCtrl = 'own';
+    }
     return (
-      <div className='comments-list-item'>
+      <div className={'comments-list-item' + ' ' + commentCtrl}>
+        <i className='fa fa-trash delete-comment' aria-hidden='true' onClick={ this.onDeleteComment }></i>
         <div className='comment-text'>{this.props.comment.text}</div>
         <div className='comment-data'>
           <div className='comment-data-author-avatar'><img src='images/interface/user.png'/></div>
@@ -55,7 +65,6 @@ const CommentsList = class CommentsList extends React.Component {
 
   onAddComment() {
     Comments.addNewComment(this.props.postId, this.state.newComment)
-    
   }
 
   onChangeComment(e) {

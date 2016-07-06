@@ -201,6 +201,26 @@ body {
               border-bottom: 1px solid #E57373;
               border-top: 1px solid #E57373;
               padding: 5px 0;
+              position: relative;
+
+              i.delete-comment {
+                display: none;
+              }
+
+              &.own {
+                i.delete-comment {
+                  display: block;
+                  position: absolute;
+                  font-size: 24px;
+                  top: 50%;
+                  margin-top: -12px;
+                  left: -40px;
+
+                  &:hover {
+                    cursor: pointer;
+                  }
+                }                
+              }
 
               .comment-text, .comment-data {
                 display: inline-block;

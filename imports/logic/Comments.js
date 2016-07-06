@@ -11,6 +11,17 @@ const CommentsList = class CommentsList {
     return this.Comments.find(param, {sort : { date : -1 }}).fetch();
   }
 
+  removeComment(comment) {
+    console.log(comment);
+    Meteor.call('comments:remove', comment, (err, res) => {
+      if (err) {
+
+      } else {
+
+      }
+    })
+  }
+
   addNewComment(postId, text) {
     let newComment = {
       post : postId,
