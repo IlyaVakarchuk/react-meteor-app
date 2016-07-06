@@ -21,7 +21,7 @@ let Page = class Page extends React.Component {
   render() {
     return (
       <div className='current-layer'>
-        { Session.get("auth") ? false : <SplashScreen /> }
+        { Session.get("auth")  ? false : <SplashScreen /> }
         <Navigation />
         { this.props.children }
       </div>
@@ -40,9 +40,15 @@ const App = class App extends React.Component {
     this.onCheckAuth = this.onCheckAuth.bind(this);
   }
 
-  onCheckAuth (nextState, replace) {
-    if (!Session.get("auth")) {
-      replace('/');
+  onCheckAuth (nextState, replace) { 
+    if (nextState.location.pathname == '/') {
+      if (Session.get("auth")) {
+        replace('/home');
+      } 
+    } else {
+      if (!Session.get("auth")) {
+        replace('/');
+      }
     }
   }
 
@@ -50,9 +56,9 @@ const App = class App extends React.Component {
     return (
       <div>
       <Router history={browserHistory}>
-        <Route path="/" component={Page} >
+        <Route path="/" component={Page} onEnter={this.onCheckAuth}>
           <Route path="auth" component={Auth}/>
-          <Route path="about" component={About} onEnter={this.onCheckAuth} />
+          <Route path="about" component={About}/>
           <Route path="home" component={Home} onEnter={this.onCheckAuth} />
           <Route path="*" component={NotFoundPage} />
         </Route>
