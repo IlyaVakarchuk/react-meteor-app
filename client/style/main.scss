@@ -114,15 +114,16 @@ body {
     }
 
     #posts-list {
-      width: 80%;
+      width: 100%;
       margin: 0 auto;
       margin-top: 30px;
       position: relative;
 
       .posts-list-item {
-        width: 100%;
-        height: 450px;
+        width: 80%;
+        max-height: 650px;
         background-color: #FFF3E0;
+        margin: 0 auto;
         margin-top: 20px;
         position: relative;
         overflow: hidden;
@@ -141,18 +142,22 @@ body {
           @include animation('show-text 0.6s forwards');
 
           .content {
-            height: 200px;
+            height: 250px;
 
             .post-text {
               padding: 30px;
               font-size: 24px;
             }
+
+            &:hover {
+              cursor: pointer;
+            }
           }
           .comments-list {
-            height: 150px;
+            height: 300px;
             width: 100%;
-            overflow-y: scroll;
-            position: relative;
+            //overflow-y: scroll;
+            //position: relative;
 
             input, button, textarea {
               outline: none;
@@ -234,7 +239,7 @@ body {
         }
 
         .preview-layout {
-          height: 350px;
+          height: 200px;
           position: relative;
 
           .dark-layer {
@@ -257,7 +262,7 @@ body {
               width: 86px;
               height: 86px;
               margin: 0 auto;
-              margin-top: 132px;
+              margin-top: 57px;
               background-image: url('/images/interface/rock_white.png');
               background-size: contain;
 
