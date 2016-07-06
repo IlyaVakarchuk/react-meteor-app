@@ -2,6 +2,7 @@ import React from 'react';
 
 import Button from './Button';
 
+
 const CommentsItem = class CommentsItem extends React.Component {
   constructor() {
     super();
@@ -43,7 +44,10 @@ const CommentsList = class CommentsList extends React.Component {
     return (
       <div className="comments-list">
         { this.renderItem() }
-        <Button action={ this.onAddComment } text={'add comment'}/>
+        <div className="new-comment">
+          <textarea></textarea>
+          <Button action={ this.onAddComment } text={'add comment'}/>
+        </div>
       </div>
     )
   }

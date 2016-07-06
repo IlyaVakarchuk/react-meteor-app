@@ -154,25 +154,38 @@ body {
             overflow-y: scroll;
             position: relative;
 
-            input, button {
+            input, button, textarea {
               outline: none;
               border: none;
             }
 
-            button {
-              width: 120px;
-              height: 40px;
-              background-color: #E57373;
-              color: #FFF3E0;
-              position: absolute;
-              bottom: 10px;
-              left: 50%;
-              margin-left: -60px;
-              text-transform: uppercase;
-              font-weight: bold;
+            .new-comment {
+              margin-top: 20px;
+              textarea {
+                width: 80%;
+                height: 140px;
+                margin: 0 auto;
+                display: block;
+                resize: none;
+                font-size: 18px;
+                padding: 10px;
+              }
 
-              &:hover {
-                cursor: pointer;
+              button {
+                width: 120px;
+                height: 40px;
+                background-color: #E57373;
+                color: #FFF3E0;
+                margin: 0 auto;
+                margin-top: 10px;
+                margin-bottom: 20px;
+                text-transform: uppercase;
+                font-weight: bold;
+                display: block;
+
+                &:hover {
+                  cursor: pointer;
+                }
               }
             }
 
