@@ -142,16 +142,47 @@ body {
 
           .content {
             height: 200px;
+
+            .post-text {
+              padding: 30px;
+              font-size: 24px;
+            }
           }
           .comments-list {
             height: 150px;
             width: 100%;
             overflow-y: scroll;
+            position: relative;
+
+            input, button {
+              outline: none;
+              border: none;
+            }
+
+            button {
+              width: 120px;
+              height: 40px;
+              background-color: #E57373;
+              color: #FFF3E0;
+              position: absolute;
+              bottom: 10px;
+              left: 50%;
+              margin-left: -60px;
+              text-transform: uppercase;
+              font-weight: bold;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
 
             .comments-list-item {
               height: 80px;
               width: 80%;
               margin: 0 auto;
+              border-bottom: 1px solid #E57373;
+              border-top: 1px solid #E57373;
+              padding: 5px 0;
 
               .comment-text, .comment-data {
                 display: inline-block;
@@ -160,7 +191,8 @@ body {
               }
 
               .comment-text {
-                width: 70%;
+                width: 69%;
+                border-right: 1px solid #E57373;
               }
 
               .comment-data {

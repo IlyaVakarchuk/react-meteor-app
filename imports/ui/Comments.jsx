@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Button from './Button';
+
 const CommentsItem = class CommentsItem extends React.Component {
   constructor() {
     super();
@@ -24,6 +26,7 @@ const CommentsList = class CommentsList extends React.Component {
     super();
 
     this.renderItem = this.renderItem.bind(this);
+    this.onAddComment = this.onAddComment.bind(this); 
   }
 
   renderItem() {
@@ -32,10 +35,15 @@ const CommentsList = class CommentsList extends React.Component {
     ));
   }
 
+  onAddComment() {
+    console.log('add comemnt event');
+  }
+
   render () {
     return (
       <div className="comments-list">
         { this.renderItem() }
+        <Button action={ this.onAddComment } text={'add comment'}/>
       </div>
     )
   }

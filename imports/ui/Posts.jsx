@@ -24,7 +24,7 @@ const PostItem = class PostItem extends React.Component {
         <div className='title'>
           { this.props.post.title}
         </div>
-         { this.state.show ? <div className='text'><div className='content'>{ this.props.post.desc }</div> <CommentsBlock commentslist={Comments.getList({post : this.props.post.id})} /> </div> : false }
+         { this.state.show ? <div className='text'><div className='content'><div className='post-text'>{ this.props.post.desc }</div></div> <CommentsBlock commentslist={Comments.getList({post : this.props.post.id})} /> </div> : false }
         <div className='preview-layout'>
           <div className='dark-layer'>
 
