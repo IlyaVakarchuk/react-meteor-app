@@ -3,6 +3,7 @@ import { Mongo } from 'meteor/mongo';
  
 const PostList = class PostList {
   constructor() {
+    Meteor.subscribe('posts');
     this.Posts = new Mongo.Collection('posts');   
   }
 
