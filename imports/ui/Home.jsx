@@ -10,6 +10,7 @@ const Home = class Home extends React.Component {
     super();
 
     this.onShowProfile = this.onShowProfile.bind(this);
+    this.onProfileUpdate = this.onProfileUpdate.bind(this);
 
     this.state = {
       profileShow : false
@@ -20,10 +21,14 @@ const Home = class Home extends React.Component {
     this.setState({profileShow : !this.state.profileShow})
   }
 
+  onProfileUpdate() {
+    this.forceUpdate()
+  }
+
   render() {
     return (
       <div id="home">
-        {this.state.profileShow ? <Profile /> : false }
+        {this.state.profileShow ? <Profile onProfileUpdate = { this.onProfileUpdate } /> : false }
         <div className='user-profile'>
           <div className='user-avatar'>
             <img onClick={ this.onShowProfile } src="images/avatar.png" /> 

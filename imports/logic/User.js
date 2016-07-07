@@ -4,11 +4,27 @@ import { Session } from 'meteor/session';
 
 const User = class User {
   constructor() {
-    this.user = Meteor.user();
+    this.userId = Meteor.userId();
   }
 
-  changeUsername(username) {
-    Accounts.setUsername(this.user.id, username);
+  changeUsername(username, callback) {
+    Meteor.call('user:changeUsername', this.userId, username, (err, res) => {
+      if (!err) {
+    		if (callback) {
+    			callback(true);
+    		}
+	    }
+    })
+  }
+
+  changeEmail(email, callback) {
+    Meteor.call('user:changeEmail', this.userId, email, (err, res) => {
+      if (!err) {
+    		if (callback) {
+    			callback(true);
+    		}
+	    }
+    })
   }
 }
 
