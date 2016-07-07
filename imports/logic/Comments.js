@@ -11,9 +11,9 @@ const CommentsList = class CommentsList {
     return this.Comments.find(param, {sort : { date : -1 }}).fetch();
   }
 
-  removeComment(comment) {
-    console.log(comment);
+  removeComment(comment, callback) {
     Meteor.call('comments:remove', comment, (err, res) => {
+      callback();
       if (err) {
 
       } else {

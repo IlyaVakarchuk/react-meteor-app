@@ -9,7 +9,6 @@ const CommentsItem = class CommentsItem extends React.Component {
     super();
 
     this.formDate = this.formDate.bind(this);
-    this.onDeleteComment = this.onDeleteComment.bind(this);
   }
 
   formDate (date) {
@@ -20,10 +19,6 @@ const CommentsItem = class CommentsItem extends React.Component {
     return beautifulDate;
   }
 
-  onDeleteComment () {
-    Comments.removeComment(this.props.comment);
-  }
-
   render () {
     let commentCtrl = ''
     if (this.props.comment.author == Meteor.user().username) {
@@ -31,7 +26,7 @@ const CommentsItem = class CommentsItem extends React.Component {
     }
     return (
       <div className={'comments-list-item' + ' ' + commentCtrl}>
-        <i className='fa fa-trash delete-comment' aria-hidden='true' onClick={ this.onDeleteComment }></i>
+        <i className='fa fa-trash delete-comment' aria-hidden='true' onClick={ () => this.props.action(this.props.comment) }></i>
         <div className='comment-text'>{this.props.comment.text}</div>
         <div className='comment-data'>
           <div className='comment-data-author-avatar'><img src='images/interface/user.png'/></div>
@@ -54,13 +49,14 @@ const CommentsList = class CommentsList extends React.Component {
 
     this.renderItem = this.renderItem.bind(this);
     this.onAddComment = this.onAddComment.bind(this); 
+    this.onDeleteComment = this.onDeleteComment.bind(this);
     this.onChangeComment = this.onChangeComment.bind(this);
   }
 
   renderItem() {
     let comments = Comments.getList({post : this.props.postId});
     return comments.map((comment) => (
-      <CommentsItem key={comment._id} comment={comment}/>  
+      <CommentsItem action={this.onDeleteComment} key={comment._id} comment={comment}/>  
     ));
   }
 
@@ -68,6 +64,14 @@ const CommentsList = class CommentsList extends React.Component {
     Comments.addNewComment(this.props.postId, this.state.newComment, () => {
       this.setState({newComment : ''});
     })
+  }
+
+  onDeleteComment (comment) {
+    Comments.removeComment(comment, () => {
+      this.forceUpdate(() => {
+        
+      }) 
+    });
   }
 
   onChangeComment(e) {
