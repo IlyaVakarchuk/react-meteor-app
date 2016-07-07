@@ -74,6 +74,29 @@ body {
       width: 100%;
       background-color: #4F5D73;
 
+      .title {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        font-size: 50px;
+        color: #E0E0D1;
+
+        .level-01, .level-02 {
+          padding: 20px 0;
+        }
+
+        .level-01 {
+          margin-top: 10vh;
+          text-transform: capitalize;
+          
+          font-size: 80px;
+        }
+
+        .level-02 {
+          
+        }
+      }
+
       img {
         margin: 0 auto;
         display: block;
