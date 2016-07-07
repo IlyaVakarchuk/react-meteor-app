@@ -10,30 +10,41 @@ const Auth = class {
 		this.emailPattern = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
 	}
 
-	auth(params) {	
+	auth(params, callback) {	
 		Meteor.loginWithPassword({email :params.login }, params.password, (err) => {
-    		console.log(err);
     	if (!err) {
     		Session.set('auth', true);
     		browserHistory.push('home');
+    	} else {
+    		if (callback) {
+    			callback(err.message);
+    		}
     	}
  		});
 	}
 
-	registration(params) {
+	registration(params, callback) {
 		if ((params.login).match(this.emailPattern) != null) {
 			if (params.password01 === params.password02 ) {
 				Accounts.createUser({username: params.login.split('@')[0], email : params.login, password : params.password01}, (err) => {
 					if (!err) {
 		    		Session.set('auth', true);
 		    		browserHistory.push('home');
+		    	} else {
+		    		if (callback) {
+		    			callback(err.message);
+		    		} 
 		    	}
 				}); 
 			} else {
-				// invalide password
+				if (callback) {
+    			callback('Password doesn\'t match!');
+    		}
 			}
 		} else {
-			// invalide email
+			if (callback) {
+  			callback('Incorrect email address!');
+  		}
 		}
 	}
 }

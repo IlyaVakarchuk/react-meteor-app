@@ -5,7 +5,9 @@ import { Meteor } from 'meteor/meteor';
 import Button from './Button';
 import Input from './Input';
 
-import AuthLogic from '../logic/Auth.js'
+import AuthLogic from '../logic/Auth.js';
+
+import Notification from './Notification';
 
 const Auth = class Auth extends React.Component {
   constructor() {
@@ -38,16 +40,21 @@ const Auth = class Auth extends React.Component {
             text : 'Registration'
           }
         }
-      }
+      },
+      notificationText : '',
+      notificationState : false
     };
 
     this.onChangePanel = this.onChangePanel.bind(this);
+    this.switchNotification = this.switchNotification.bind(this);
   }
 
-  onChangePanel (e) {
-    e.preventDefault();
-    
+  onChangePanel (e) {    
     this.setState({login : !this.state.login, registration : !this.state.registration});
+  }
+
+  switchNotification(state, msg) {
+    this.setState({notificationState : state, notificationText : msg});
   }
 
   render () {
@@ -58,8 +65,8 @@ const Auth = class Auth extends React.Component {
         <a className={ this.state.registration ? 'active' : '' } data-panel='registration' onClick={ this.onChangePanel } >Registartion</a>
       </nav>
 
-      { this.state.login ? <LoginPanel data={ this.state.settings }/> : <RegistrationPanel data={ this.state.settings }/> }
-
+      { this.state.login ? <LoginPanel switchNotification={this.switchNotification} data={ this.state.settings }/> : <RegistrationPanel switchNotification={this.switchNotification} data={ this.state.settings }/> }
+      <Notification show={ this.state.notificationState } text={ this.state.notificationText } />
       </div>
     )
   }
@@ -68,12 +75,22 @@ const Auth = class Auth extends React.Component {
 const LoginPanel = class LoginPanel extends React.Component {
   constructor() {
     super();
-    this.onLogin = this.onLogin.bind(this); 
+    this.onLogin = this.onLogin.bind(this);
   }
 
   onLogin (e) {
-    e.preventDefault();
-    AuthLogic.auth({login : this.props.data.login.value, password : this.props.data.password.value});
+    AuthLogic.auth(
+      {
+        login : this.props.data.login.value, 
+        password : this.props.data.password.value
+      }, (msg) => {
+        if (msg) {
+          this.props.switchNotification(true, msg);
+          setTimeout(() => {
+            this.props.switchNotification(false, '');
+          }, 2000);
+        }
+    });
   }
 
   render () {
@@ -96,11 +113,24 @@ const LoginPanel = class LoginPanel extends React.Component {
 const RegistrationPanel = class RegistrationPanel extends React.Component{
   constructor() {
     super();
+
     this.onRegistration = this.onRegistration.bind(this);
   }
 
   onRegistration () {
-   AuthLogic.registration({login : this.props.data.login.value, password01 : this.props.data.password.passVal01.value, password02 : this.props.data.password.passVal02.value}); 
+   AuthLogic.registration(
+    {
+      login : this.props.data.login.value, 
+      password01 : this.props.data.password.passVal01.value, 
+      password02 : this.props.data.password.passVal02.value
+    }, (msg) => {
+      if (msg) {
+        this.props.switchNotification(true, msg);
+        setTimeout(() => {
+          this.props.switchNotification(false, '');
+        }, 2000);
+      }
+    }); 
   }
 
   render () {
