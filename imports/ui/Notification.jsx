@@ -1,42 +1,27 @@
 import React from 'react';
 
 const Notification = class Notification extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      show : true,
-      message : '',
-      delay : 2000
+      show : this.props.show,
+      message : ''
     }
-    this.onShowNotification = this.onShowNotification.bind(this);
-    this.onHideNotification = this.onHideNotification.bind(this);
-
   }
 
-  test() {
-    console.log('dfsdfsd')
-  }
-
-  onShowNotification () {
-    this.setState({show : true});
-    setTimeout(this.onHideNotification,this.state.delay);
-  }
-
-  onHideNotification () {
-    this.setState({show : false}); 
-  }
-
-  componentWillReceiveProps(test) {
-    console.log(test)
-    console.log('update')
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.show) {
+      this.setState({show : true, message : nextProps.text});
+    } else {
+      this.setState({show : false, message : nextProps.text});
+    }
   }
 
   render () {
     let view = '';
-    console.log('change')
     if (this.state.show) {
-      view = <div id='notification'><div className='notification-content'> dsv v</div></div>;
+      view = <div id='notification'><div className='notification-content'>{ this.state.message }</div></div>;
     } else {
       view = false;
     }
