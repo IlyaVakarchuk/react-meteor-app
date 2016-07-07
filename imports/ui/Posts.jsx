@@ -1,5 +1,4 @@
 import React from 'react';
-import { Scrollbars } from 'react-custom-scrollbars';
 import Comments from '../logic/Comments.js';
 import CommentsBlock from './Comments.jsx';
 
@@ -57,9 +56,7 @@ const Posts = class Posts extends React.Component {
   render () {
     return (
       <div id="posts-list">
-        <Scrollbars autoHide={true} style={{ width: '100%', height: '60vh' }}>
-          { this.renderItem() }
-        </Scrollbars>
+        { this.renderItem() }
       </div>
     )
   }

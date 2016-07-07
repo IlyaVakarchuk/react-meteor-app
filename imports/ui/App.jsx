@@ -3,6 +3,8 @@ import React from 'react';
 import { Session } from 'meteor/session';
 import { Meteor } from 'meteor/meteor';
 
+import { Scrollbars } from 'react-custom-scrollbars';
+
 import { Router, Route, Link, browserHistory } from 'react-router'
 
 import Auth from './Auth';
@@ -20,11 +22,13 @@ let Page = class Page extends React.Component {
 
   render() {
     return (
+      <Scrollbars style={{ width: '100vw', height: '100vh' }}>
       <div className='current-layer'>
         { Session.get("auth")  ? false : <SplashScreen /> }
         <Navigation />
         { this.props.children }
       </div>
+      </Scrollbars>
     )
   }
 }
