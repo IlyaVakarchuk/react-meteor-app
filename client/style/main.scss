@@ -50,6 +50,24 @@ body {
     }
   }
 
+  #notification {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20vh;
+    background-color: #40332A;
+    z-index: 1000;
+    @include animation('show-notification 0.4s ease-out'); 
+
+    .notification-content {
+      color: #F0C948;
+      font-size: 30px;
+      text-align: center;
+      line-height: 20vh;
+    }
+  }
+
   #splash-screen {
     .header {
       height: 65vh;

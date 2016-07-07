@@ -5,7 +5,7 @@ const Notification = class Notification extends React.Component {
     super();
 
     this.state = {
-      show : false,
+      show : true,
       message : '',
       delay : 2000
     }
@@ -36,7 +36,7 @@ const Notification = class Notification extends React.Component {
     let view = '';
     console.log('change')
     if (this.state.show) {
-      view = <div id='notification'> dsv v</div>;
+      view = <div id='notification'><div className='notification-content'> dsv v</div></div>;
     } else {
       view = false;
     }
