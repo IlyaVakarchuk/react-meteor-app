@@ -1,5 +1,4 @@
 import React from 'react';
-import Comments from '../logic/Comments.js';
 import CommentsBlock from './Comments.jsx';
 
 const PostItem = class PostItem extends React.Component {
@@ -23,7 +22,7 @@ const PostItem = class PostItem extends React.Component {
         <div className='title'>
           { this.props.post.title}
         </div>
-         { this.state.show ? <div className='text'><div className='content' onClick={ this.onShowText }><div className='post-text'>{ this.props.post.text }</div></div> <CommentsBlock postId={this.props.post.id} commentslist={Comments.getList({post : this.props.post.id})} /> </div> : false }
+         { this.state.show ? <div className='text'><div className='content' onClick={ this.onShowText }><div className='post-text'>{ this.props.post.text }</div></div> <CommentsBlock postId={this.props.post.id} /> </div> : false }
         <div className='preview-layout'>
           <div className='dark-layer'>
 

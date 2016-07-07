@@ -22,7 +22,7 @@ const CommentsList = class CommentsList {
     })
   }
 
-  addNewComment(postId, text) {
+  addNewComment(postId, text, callback) {
     let newComment = {
       post : postId,
       author : Meteor.user().username,
@@ -32,7 +32,11 @@ const CommentsList = class CommentsList {
       if (err) {
 
       } else {
-
+        if (res) {
+          if (callback) {
+            callback();
+          }
+        }  
       }
     })
   }

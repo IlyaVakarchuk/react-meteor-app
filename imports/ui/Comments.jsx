@@ -44,12 +44,12 @@ const CommentsItem = class CommentsItem extends React.Component {
 }
 
 const CommentsList = class CommentsList extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       newComment : '',
-      render : false
+      comments : Comments.getList({post : props.postId})
     }
 
     this.renderItem = this.renderItem.bind(this);
@@ -58,13 +58,16 @@ const CommentsList = class CommentsList extends React.Component {
   }
 
   renderItem() {
-    return this.props.commentslist.map((comment) => (
+    let comments = Comments.getList({post : this.props.postId});
+    return comments.map((comment) => (
       <CommentsItem key={comment._id} comment={comment}/>  
     ));
   }
 
   onAddComment() {
-    Comments.addNewComment(this.props.postId, this.state.newComment)
+    Comments.addNewComment(this.props.postId, this.state.newComment, () => {
+      this.setState({newComment : ''});
+    })
   }
 
   onChangeComment(e) {
@@ -77,7 +80,7 @@ const CommentsList = class CommentsList extends React.Component {
         <div className="comments-list">
           { this.renderItem() }
           <div className="new-comment">
-            <textarea onChange={ this.onChangeComment }></textarea>
+            <textarea onChange={ this.onChangeComment } value={this.state.newComment}></textarea>
             <Button action={ this.onAddComment } text={'add comment'}/>
           </div>
         </div>
