@@ -179,7 +179,6 @@ body {
           text-align: center;
           line-height: 100px;
           font-size: 48px;
-          text-transform: uppercase;
           color: #FFF3E0;
         }
 
@@ -187,7 +186,7 @@ body {
           @include animation('show-text 0.6s forwards');
 
           .content {
-            height: 250px;
+            padding-bottom: 15px;
 
             .post-text {
               padding: 30px;
@@ -202,8 +201,6 @@ body {
           .comments-list {
             height: 300px;
             width: 100%;
-            //overflow-y: scroll;
-            //position: relative;
 
             input, button, textarea {
               outline: none;
