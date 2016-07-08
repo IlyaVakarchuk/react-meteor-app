@@ -8,14 +8,16 @@ const CommentsItem = class CommentsItem extends React.Component {
   constructor() {
     super();
 
+    this.months = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'];
     this.formDate = this.formDate.bind(this);
   }
 
   formDate (date) {
+
     if (date == undefined) {
      return ''
     }
-    let beautifulDate = date.getDate() + ' / ' + (date.getMonth() + 1) + ' / ' + date.getFullYear();
+    let beautifulDate = date.getDate() + ' ' + this.months[date.getMonth()] + ' ' + date.getFullYear();
     return beautifulDate;
   }
 
