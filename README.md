@@ -210,4 +210,4 @@ Meteor.publish('posts', function () {
 Meteor.logout(callback)
 ```
 
-![comments-add](/readme/12-comments-remove.gif)
+![comments-add](/readme/13-logout.gif)
